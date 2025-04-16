@@ -1,0 +1,45 @@
+package com.authservice.model;
+
+import com.authservice.entities.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class) // Converts camelCase to snake_case
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown properties during deserialization
+@Builder// @Builder
+public class UserInfoDto {
+
+
+    private String userId;
+
+    @NotNull
+    private String username;
+    @NotNull
+    private String password;
+
+
+    @NotNull
+    private String firstname;
+    @NotNull
+    private String lastname;
+    @NotNull
+    private Long phonenumber;
+
+    @NotNull
+    private String email;
+    @NotNull
+    private Set<UserRole> roles = new HashSet<>();
+
+}
